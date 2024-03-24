@@ -52,6 +52,8 @@
       "syncthing"
       "tailscale"
       "unnaturalscrollwheels"
+
+      "font-cousine-nerd-font"
     ];
   };
 

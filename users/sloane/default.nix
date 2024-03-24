@@ -59,8 +59,23 @@
     plugins = with pkgs.tmuxPlugins; [
       sensible
       prefix-highlight
-      catppuccin
       vim-tmux-navigator
+      {
+        plugin = catppuccin;
+        extraConfig = "set -g @catppuccin_flavour 'frappe'";
+      }
     ];
+  };
+
+  programs.kitty = {
+    enable = true;
+    font = {
+      name = "Cousine Nerd Font Mono Regular";
+      size = 18;
+    };
+    shellIntegration = {
+      enableFishIntegration = true;
+    };
+    theme = "Catppuccin-Frappe";
   };
 }
