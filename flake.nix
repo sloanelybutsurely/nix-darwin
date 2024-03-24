@@ -5,8 +5,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     darwin.url = "github:LnL7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
-    # home-manager.url = "github:nix-community/home-manager";
-    # home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, darwin, nixpkgs, home-manager }:
@@ -19,6 +19,15 @@
 
       modules = [ 
         ./hosts/Sloanes-MacBook-Air/default.nix
+        home-manager.darwinModules.home-manager
+        {
+          users.users.sloane.home = "/Users/sloane";
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.sloane = import ./users/sloane/default.nix;
+          };
+        }
       ];
     };
 
