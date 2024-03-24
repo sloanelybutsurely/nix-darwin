@@ -7,10 +7,16 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, darwin, nixpkgs, home-manager }:
+  outputs = inputs@{ self, darwin, nixpkgs, home-manager, nixvim }:
   {
+    home-manager.modules = [
+      nixvim.homeManagerModules.nixvim
+    ];
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#Sloanes-MacBook-Air
     darwinConfigurations."Sloanes-MacBook-Air" = darwin.lib.darwinSystem {
