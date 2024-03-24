@@ -9,6 +9,10 @@
       eza
       zoxide
     ];
+
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
   };
 
   programs.fish = {
@@ -34,6 +38,9 @@
       }
     ];
     shellAbbrs = {
+      vim = "nvim";
+
+      # git
       g    = "git";
       ga   = "git add";
       gb   = "git branch";
@@ -50,6 +57,24 @@
       grr  = "git rebase --continue";
       gst  = "git status";
       gca  = "git commit -a";
+    };
+  };
+
+  programs.git = {
+    enable = true;
+    userName = "sloane";
+    userEmail = "1699281+sloanelybutsurely@users.noreply.github.com";
+    signing = {
+      signByDefault = true;
+      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID0TH2GezEx8+zlKBqUb7rBsbmghnd1u4nX6YpQr28Zw";
+    };
+    extraConfig = {
+      init.defaultBranch = "main";
+      push.autoSetupRemote = true;
+      gpg = {
+        format = "ssh";
+        ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+      };
     };
   };
 
