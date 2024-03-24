@@ -35,6 +35,7 @@
       autoUpdate = true;
       upgrade = true;
     };
+    brews = [ "openssl" ];
     taps = [ "homebrew/cask-fonts" ];
     casks = [
       "1password"

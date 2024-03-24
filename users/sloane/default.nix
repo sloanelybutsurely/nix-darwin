@@ -9,10 +9,12 @@
       eza
       zoxide
       yadm
+      mise
     ];
 
     sessionVariables = {
       EDITOR = "nvim";
+      KERL_CONFIGURE_OPTIONS="--with-ssl=/opt/homebrew/opt/openssl@3";
     };
   };
 
@@ -26,6 +28,9 @@
         eval $TMUX
         tmux attach-session -d -t default
       end
+    '';
+    shellInitLast = ''
+      mise activate fish | source
     '';
     plugins = [
       {
