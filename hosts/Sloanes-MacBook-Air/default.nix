@@ -114,11 +114,14 @@
       cmp = {
         enable = true;
         autoEnableSources = true;
-        settings.sources = [
-          { name = "nvim_lsp"; }
-          { name = "path"; }
-          { name = "buffer"; }
-        ];
+        settings = {
+          mapping.__raw = "cmp.mapping.preset.insert({})";
+          sources = [
+            { name = "nvim_lsp"; }
+            { name = "path"; }
+            { name = "buffer"; }
+          ];
+        };
         cmdline = {
           ":" = {
             mapping = { __raw = "cmp.mapping.preset.cmdline()"; };
@@ -145,6 +148,7 @@
       };
       registrations = {
         "<leader>g" = "Git";
+        "<leader>f" = "Files";
       };
     };
 
@@ -178,6 +182,13 @@
         key = "<leader><tab>";
         action = "<cmd>NERDTreeToggle<cr>"; 
         options = { desc = "Toggle NERDTree"; };
+      }
+
+      # file commands
+      {
+        key = "<leader>fl";
+        action = "<cmd>NERDTreeFind<cr>";
+        options = { desc = "Locate file"; };
       }
 
       # git
@@ -225,6 +236,22 @@
         options = { desc = "-i origin/master"; };
       }
     ];
+
+    # TODO: move this into Nix
+    extraConfigLuaPost = ''
+    vim.api.nvim_create_autocmd('LspAttach', {
+      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+      callback = function(ev)
+        -- Enable completion triggered by <c-x><c-o>
+        vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+        local opts = { buffer = ev.buf }
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+      end,
+    })
+    '';
   };
 
   system.defaults = {
