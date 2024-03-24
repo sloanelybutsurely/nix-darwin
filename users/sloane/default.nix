@@ -10,6 +10,8 @@
       zoxide
       yadm
       mise
+      devenv
+      direnv
     ];
 
     sessionVariables = {
@@ -108,14 +110,16 @@
     ];
   };
 
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   programs.kitty = {
     enable = true;
     font = {
       name = "Cousine Nerd Font Mono Regular";
       size = 18;
-    };
-    shellIntegration = {
-      enableFishIntegration = true;
     };
     theme = "Catppuccin-Frappe";
   };
