@@ -36,7 +36,6 @@
       autoUpdate = true;
       upgrade = true;
     };
-    autoUpdate = true;
     casks = [
       "1password"
       "alfred"
