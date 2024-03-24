@@ -54,4 +54,13 @@
       "unnaturalscrollwheels"
     ];
   };
+
+  system.defaults = {
+    dock = {
+      orientation = "bottom";
+      autohide = true;
+      autohide-delay = 0.1;
+      show-recents = false;
+    };
+  };
 }
