@@ -14,9 +14,6 @@
 
   outputs = inputs@{ self, darwin, nixpkgs, home-manager, nixvim }:
   {
-    home-manager.modules = [
-      nixvim.homeManagerModules.nixvim
-    ];
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#Sloanes-MacBook-Air
     darwinConfigurations."Sloanes-MacBook-Air" = darwin.lib.darwinSystem {
@@ -25,6 +22,7 @@
 
       modules = [ 
         ./hosts/Sloanes-MacBook-Air/default.nix
+        nixvim.nixDarwinModules.nixvim
         home-manager.darwinModules.home-manager
         {
           users.users.sloane.home = "/Users/sloane";
