@@ -4,6 +4,9 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     fish
+    git
+    curl
+    tmux
   ];
 
   environment.shells = [ pkgs.fish ];
