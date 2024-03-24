@@ -15,6 +15,7 @@
     enable = true;
     interactiveShellInit = ''
       fish_vi_key_bindings
+      zoxide init fish | source
       if not set -q TMUX
         set -g TMUX tmux new-session -d -s default
         eval $TMUX
