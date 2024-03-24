@@ -8,6 +8,7 @@
       gh
       eza
       zoxide
+      yadm
     ];
 
     sessionVariables = {
