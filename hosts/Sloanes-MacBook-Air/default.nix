@@ -29,4 +29,29 @@
 
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
+
+  homebrew = {
+    enable = true;
+    onActivation = {
+      autoUpdate = true;
+      upgrade = true;
+    };
+    autoUpdate = true;
+    casks = [
+      "1password"
+      "alfred"
+      "discord"
+      "fantastical"
+      "firefox"
+      "karabiner-elements"
+      "keepingyouawake"
+      "kitty"
+      "obsidian"
+      "postgres-unofficial"
+      "postico"
+      "syncthing"
+      "tailscale"
+      "unnaturalscrollwheels"
+    ];
+  };
 }
