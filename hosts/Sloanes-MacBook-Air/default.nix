@@ -36,6 +36,7 @@
       autoUpdate = true;
       upgrade = true;
     };
+    taps = [ "homebrew/cask-fonts" ];
     casks = [
       "1password"
       "alfred"
