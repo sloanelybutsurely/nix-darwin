@@ -127,6 +127,10 @@
       name = "Cousine Nerd Font Mono Regular";
       size = 18;
     };
+    settings = {
+      confirm_os_window_close = 0;
+      paste_actions = "quote-urls-at-prompt,confirm-if-large";
+    };
     theme = "Catppuccin-Frappe";
   };
 }
