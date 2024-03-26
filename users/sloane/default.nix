@@ -1,17 +1,14 @@
 { pkgs, ... }:
 {
   home = {
+    username = "sloane";
+    homeDirectory = "/Users/sloane";
     stateVersion = "23.11";
     packages = with pkgs; [
-      ripgrep
       jq
-      gh
-      eza
       zoxide
       yadm
-      mise
       devenv
-      direnv
       watchman
     ];
 
@@ -48,6 +45,7 @@
     ];
     shellAbbrs = {
       vim = "nvim";
+      cat = "bat";
 
       # git
       g    = "git";
@@ -135,6 +133,13 @@
     ];
   };
 
+  programs.home-manager.enable = true;
+
+  programs.mise = {
+    enable = true;
+
+  };
+
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
@@ -151,5 +156,28 @@
       paste_actions = "quote-urls-at-prompt,confirm-if-large";
     };
     theme = "Catppuccin-Frappe";
+  };
+
+  programs.bat.enable = true;
+  programs.eza ={
+    enable = true;
+    git = true;
+    icons = true;
+    enableFishIntegration = true;
+    extraOptions = [
+      "--group-directories-first"
+      "--header"
+    ];
+  };
+  programs.fzf.enable = true;
+  programs.gh = {
+    enable = true;
+    settings = {
+      git_protocol = "ssh";
+    };
+  };
+  programs.ripgrep = {
+    enable = true;
+    arguments = [];
   };
 }
