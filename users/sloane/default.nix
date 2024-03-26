@@ -12,6 +12,7 @@
       mise
       devenv
       direnv
+      watchman
     ];
 
     sessionVariables = {
@@ -83,6 +84,24 @@
         format = "ssh";
         ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
       };
+    };
+  };
+
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      core.fsmonitor = "watchman";
+      user = {
+        name = "sloane";
+        email = "1699281+sloanelybutsurely@users.noreply.github.com";
+      };
+      signing = {
+        sign-all = true;
+        backend = "ssh";
+        key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID0TH2GezEx8+zlKBqUb7rBsbmghnd1u4nX6YpQr28Zw";
+        backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+      };
+      ui.paginate = "never";
     };
   };
 
