@@ -13,17 +13,22 @@
   };
 
   outputs = inputs@{ self, darwin, nixpkgs, home-manager, nixvim }:
-  {
+  let
+    globalModules = [
+      { system.configurationRevision = self.rev or self.dirtyRev or null; }
+    ];
+    globalDarwinModules = globalModules ++ [
+      ./modules/darwin/global.nix
+      nixvim.nixDarwinModules.nixvim
+      home-manager.darwinModules.home-manager
+      ./modules/darwin/nixvim.nix
+    ];
+  in {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#Sloanes-MacBook-Air
     darwinConfigurations."Sloanes-MacBook-Air" = darwin.lib.darwinSystem {
-      # Set Git commit hash for darwin-version.
-      system.configurationRevision = self.rev or self.dirtyRev or null;
-
-      modules = [ 
+      modules = globalDarwinModules ++ [ 
         ./hosts/Sloanes-MacBook-Air/default.nix
-        nixvim.nixDarwinModules.nixvim
-        home-manager.darwinModules.home-manager
         {
           users.users.sloane.home = "/Users/sloane";
           home-manager = {
@@ -39,10 +44,8 @@
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
-      modules = [ 
+      modules = globalDarwinModules ++ [ 
         ./hosts/Sloanes-MacBook-Pro/default.nix
-        nixvim.nixDarwinModules.nixvim
-        home-manager.darwinModules.home-manager
         {
           users.users.sloane.home = "/Users/sloane";
           home-manager = {
