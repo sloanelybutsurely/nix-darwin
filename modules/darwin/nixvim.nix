@@ -37,6 +37,10 @@
 
       tmux-navigator.enable = true;
 
+      nvim-autopairs = {
+        enable = true;
+      };
+
       lsp = {
         enable = true;
         servers = {
@@ -77,6 +81,11 @@
       treesitter = {
         enable = true;
         indent = true;
+      };
+
+      # rust
+      rustaceanvim = {
+        enable = true;
       };
     };
 
