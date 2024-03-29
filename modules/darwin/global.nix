@@ -56,6 +56,7 @@
     casks = [
       "1password"
       "alfred"
+      "dash"
       "fantastical"
       "firefox"
       "karabiner-elements"
